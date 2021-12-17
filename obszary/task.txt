@@ -1,0 +1,4 @@
+Napisz program, który wczytuje współrzędne punktu (x,y) i sprawdza, czy ten punkt należy do obszaru A, B, C, D, E, F, G, I, J. Jeśli punkt nie należy do żadnego z tych obszarów program wyświetla komunikat: poza obszarami, jeśli punkt leży na którejkolwiek z krzywych program wyświetla komunikat: na krzywej.
+Punkty, które leżą na osi ox w obszarach granicznych (A-D, E-H oraz I-J) zaliczamy do obszarów nad osią ox, czyli odpowiednio do A, E, I.
+Punkty, które leżą na osi oy w obszarze granicznym (G-H) zaliczamy do obszarów z dodatnimi wartościami x, czyli odpowiednio do H.
+Program działa w pętli i kończy się, gdy podany zostanie punk (0,0).
