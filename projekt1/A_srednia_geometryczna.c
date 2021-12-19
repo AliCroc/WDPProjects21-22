@@ -21,9 +21,13 @@ int main()
 
     printf("\nWitaj w moim programie: %s\n%s", _TASK_NAME, _TASK_DESCRIPTION);
     while(true) {
-        printf("\nPodaj prosze wartosc elementu\n");
+        printf("\nPodaj prosze wartosc elementu nr %d lub wpisz \"=\" by uzyskac koncowy wynik\n", element_count + 1);
         scanf_check = scanf("%lf", &temp_value);
         if(scanf_check == 0) break;
+        if(temp_value < 0.0) {
+            printf("\nNie dozwolone jest wprowadzanie wartosci ujemnych!\n");
+            continue;
+        }
         element_count++;
         whole_value*=temp_value;
     }
