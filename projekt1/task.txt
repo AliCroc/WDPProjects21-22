@@ -1,0 +1,3 @@
+PL
+Średnia geometryczna elementów dodatnich; elementy typu double wczytywane z klawiatury
+do napotkania wartości = koniec włącznie 
