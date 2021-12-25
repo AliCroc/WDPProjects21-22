@@ -1,3 +1,6 @@
 PL
 Średnia geometryczna elementów dodatnich; elementy typu double wczytywane z klawiatury
 do napotkania wartości = koniec włącznie 
+
+EN
+Create program in which geometry mean is counted out of positive double values. Typing symbol "=" must conclude in calculating the final result out of earlier typed-in element values.
