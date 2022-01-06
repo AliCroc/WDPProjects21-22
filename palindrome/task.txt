@@ -1,0 +1,4 @@
+EN
+Write a program that:
+- counts typed in text's length
+- checks if the typed in text is a palindrome
