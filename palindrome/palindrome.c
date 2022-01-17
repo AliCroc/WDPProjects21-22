@@ -1,5 +1,3 @@
-// by AC, 12.2021
-
 #include <stdio.h>
 #include <string.h>
 
@@ -8,19 +6,26 @@
 
 typedef enum { false, true } bool; // for compatibility
 
-// function declarations
-
-//
-
 int main() {
-    char word_chain[200];
-    int i, len, is_palindrome = true;
+    char word_chain[200], final_chain[200];
+    int c = 0, d = 0, i, len, is_palindrome = true;
     printf("\nWitaj w moim programie: %s\n%s\n", _TASK_NAME, _TASK_DESCRIPTION);
-    printf("\nPodaj dowolne slowo\n");
-    scanf("%s", word_chain);
-    len = strlen(word_chain);
+    printf("\nPodaj dowolne zdanie\n");
+    scanf("%[^\t\n]", word_chain);
+
+    while (word_chain[c] != '\0')
+    {
+        printf("%c", word_chain[c]);
+        if (word_chain[c] != ' ') {
+        final_chain[d] = word_chain[c];
+        d++;
+        }
+        c++;
+    }
+
+    len = strlen(final_chain);
     for(i = 0; i < len; i++) {
-        if(word_chain[i] != word_chain[len-i-1]) {
+        if(final_chain[i] != final_chain[len-i-1]) {
             is_palindrome = false;
             break;
         }
