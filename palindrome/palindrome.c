@@ -30,7 +30,7 @@ int main() {
             break;
         }
     }
-    printf("\nSlowo %s ma w sobie %d znakow i %sjest palindromem", word_chain, len, is_palindrome ? "" : " NIE");
+    printf("\nZdanie %s ma w sobie %d znakow i %sjest palindromem", word_chain, len, is_palindrome ? "" : " NIE");
     printf("\nDziekuje za skorzystanie z mojego programu!\n");
     return 0;
 }
