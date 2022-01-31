@@ -62,11 +62,11 @@ int zwroc_liste_mnoznikow_funkcji(int m) {
     int nr_of_args, numerator = 1, denominator, i, lista_wykrzyknikow[m]; //lista_wykrzyknikow to kolejne rozwiniecia liczby m!
     static int lista_zwrotna[workaround_static_def +m-1];
     nr_of_args = m/2;
-    if(m % 2 == 0) // ✔️
+    if(m % 2 == 0)
         nr_of_args += 1;
 
     lista_wykrzyknikow[0] = 1; // 0! = 1
-    for(i = 1; i <= m; i++) { // ✔️
+    for(i = 1; i <= m; i++) {
         numerator *= i;
         lista_wykrzyknikow[i] = numerator;
     }
