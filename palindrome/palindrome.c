@@ -17,8 +17,8 @@ int main() {
     {
         printf("%c", word_chain[c]);
         if (word_chain[c] != ' ') {
-        final_chain[d] = word_chain[c];
-        d++;
+            final_chain[d] = word_chain[c];
+            d++;
         }
         c++;
     }

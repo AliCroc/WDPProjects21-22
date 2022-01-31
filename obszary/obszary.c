@@ -5,13 +5,13 @@
 #include <string.h>
 #include <math.h>
 
-#define _RADIUS 9
+#define _RADIUS 3
 #define _EXIT_COORDINATE_X 0
 #define _EXIT_COORDINATE_Y 0
 #define _NUMBER_OF_AREAS 10
 
 typedef enum { false, true } bool; // for compatibility
-typedef enum { False = 0, True = 1, NA = 2 } CheckupMedium; 
+typedef enum { False = 0, True = 1, NA = 2 } CheckupMedium;
 
 // NA is short for non-applicable, this means that this information is irrevelent for described area;
 // for example area A exists on both sides of OY axis, so if previous data matches required conditions,
@@ -19,7 +19,7 @@ typedef enum { False = 0, True = 1, NA = 2 } CheckupMedium;
 // with less "if" statements still get the correct area
 
 typedef struct {
-    int x, y;
+    float x, y;
 } Point;
 
 typedef struct {
@@ -84,7 +84,7 @@ int main()
             printf("Punkt znajduje sie poza obszarami");
 
         else if (area_name != 'X')
-            printf("\nPunkt o wspolrzednych %d, %d znajduje sie w obszarze %c\n", temp_point.x, temp_point.y, area_name);
+            printf("\nPunkt o wspolrzednych %.3f, %.3f znajduje sie w obszarze %c\n", temp_point.x, temp_point.y, area_name);
             
         else 
             printf("Punkt znajduje sie na krzywej");
@@ -93,12 +93,12 @@ int main()
 }
 
 void savePointInput(Point *_point) {
-    int tx, ty;
+    float tx, ty;
     printf("\nPodaj prosze koordynaty swojego punktu (x, y)\n\t\t");
-    scanf("%d %d", &tx, &ty);
+    scanf("%f %f", &tx, &ty);
     _point->x = tx;
     _point->y = ty;
-    // printf("\nwsporzedne punktu: %d %d\n"); //debug
+    // printf("\nwsporzedne punktu: %d %d\n", _point->x, _point->y); //debug
 }
 
 int checkIfExitCoorinatesWereUsed(Point *_point) {
@@ -108,7 +108,7 @@ int checkIfExitCoorinatesWereUsed(Point *_point) {
 }
 
 bool checkIfIsInCircleRange(Point _point) {
-    if(_point.y > _RADIUS || _point.x > _RADIUS) 
+    if(fabs(_point.y) > _RADIUS || fabs(_point.x) > _RADIUS) 
         return false;
     return true;
 }
