@@ -1,6 +1,7 @@
 // by AC, 12.2021
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 #define _TASK_NAME "tablicuj funkcje pow((1 + x), 2)"
@@ -11,7 +12,7 @@
 typedef enum { false, true } bool;
 
 double szereg(double x, int * mnozniki, int m);
-int zwroc_liste_mnoznikow_funkcji(int m);
+int *zwroc_liste_mnoznikow_funkcji(int m);
 
 int main() {
     int sub_count, i, m;
@@ -30,8 +31,8 @@ int main() {
     scanf("%lf %lf", &start_value, &end_value);
     printf("Podaj liczbe podrozdzialow\n");
     scanf("%d", &sub_count);
-    // loop over all sub chapter values and print results
-    printf("\n\t|    argument x  |    wartosc f(x)  | wartosc szeregu |");
+    //loop over all sub chapter values and print results
+    printf("\n\t|   argument x  |    wartosc f(x)  | wartosc szeregu |");
     diff = (end_value - start_value)/sub_count;
     x = start_value;
     int *wskaznik_mnoznikow = zwroc_liste_mnoznikow_funkcji(m);
@@ -43,27 +44,9 @@ int main() {
     return 0;
 }
 
-
-double szereg(double x, int * mnozniki, int m) {
-    double result = 1;
-    int j;
-    if(m <= 0)
-        return 1;
-    
-    for(j = 1; j < m; j++) {
-        result += x * (*(mnozniki + j));
-        x = x*x;
-    }
-
-    return result;
-}
-
-int zwroc_liste_mnoznikow_funkcji(int m) {
-    int nr_of_args, numerator = 1, denominator, i, lista_wykrzyknikow[m]; //lista_wykrzyknikow to kolejne rozwiniecia liczby m!
-    static int lista_zwrotna[workaround_static_def +m-1];
-    nr_of_args = m/2;
-    if(m % 2 == 0)
-        nr_of_args += 1;
+int *zwroc_liste_mnoznikow_funkcji(int m) {
+    int numerator = 1, denominator, i, lista_wykrzyknikow[m+1]; //lista_wykrzyknikow to kolejne rozwiniecia liczby m!
+    static int lista_zwrotna[9999];
 
     lista_wykrzyknikow[0] = 1; // 0! = 1
     for(i = 1; i <= m; i++) {
@@ -71,11 +54,26 @@ int zwroc_liste_mnoznikow_funkcji(int m) {
         lista_wykrzyknikow[i] = numerator;
     }
 
-    for(i = 0; i < nr_of_args; i++) {
-        denominator = lista_wykrzyknikow[i] * lista_wykrzyknikow[m-i];
+    for(i = 0; i <= m; i++) {
+        denominator = lista_wykrzyknikow[i] * lista_wykrzyknikow[m-i]; //k!(n-k)!
         lista_zwrotna[i] = numerator / denominator;
-        lista_zwrotna[m-1-i] = lista_zwrotna[i];
     }
 
     return lista_zwrotna;
+}
+
+double szereg(double x, int * mnozniki, int m) {
+    double result = 1, temp_mnoznik, local_x;
+    int j;
+    local_x = x;
+    if(m <= 0 || x == 0)
+        return 1;
+    
+    for(j = 1; j <= m; j++) { //opuszczamy 1 ktore dodaliśmy na początku
+        temp_mnoznik = mnozniki[j];
+        result += local_x * temp_mnoznik;
+        local_x = local_x*x;
+    }
+
+    return result;
 }
